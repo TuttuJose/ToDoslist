@@ -1,0 +1,81 @@
+﻿@model WebApplication5.Models.Todos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css.map"></script>
+
+
+<script type="text/javascript">
+
+    function validateData()
+    {
+
+
+        swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this imaginary file!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel plx!",
+            closeOnConfirm: false,
+            closeOnCancel: false
+        },
+            function (isConfirm) {
+                if (isConfirm) {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    @*@Url.Action("CreatePopUp", "Todos")*@
+                } else {
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                }
+            });
+
+        //swal("Here's a message!")
+
+
+        return true
+                 }
+</script>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Todos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDone)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <button type="button" class="btn-block" style="width:200px;height:40px" onclick="return validateData();">Delete</button>
+        <div class="form-actions no-color">
+            @*<input type="submit" value="Delete" class="btn btn-default" onclick="return validateData();" />*@ |
+
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </div>
+    }
+</div>
+
